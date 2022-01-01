@@ -6,8 +6,28 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": [
+    "storage", 
+    "activeTab", 
+    "scripting",
+    "identity"
+  ],
+  "host_permissions": [
+    "http://localhost:3000/*"
+  ],
   "action": {
     "default_popup": "popup.html"
-  }
+  },
+  "oauth2": {
+    "client_id": "844813140506-7f1iq6cng76vra5tbqdqp4u8uqa0i5hr.apps.googleusercontent.com",
+    "scopes":["https://www.googleapis.com/auth/userinfo.email"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://www.google.com/robots.txt*"],
+      "js": ["auth.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhXJ7Nd/ygN/l4Tk4cq6c/7v8YZAIdvt/4IleO3CNhL4WAIXTWp7BCneHsPjzGsQb4QHnomWKw+seCS6VDxeTvKoWJHuZV/qY9HI3C5XVQnJrEzGekb++HBkolRSB7L65wuNHhkcuK1FQheWuX8Go2R2ZbZObDoxifUc69MsVMfPBJ3TqGZvfsA4RormA05kYanoLQCbx5unx2kwHq2zDG9iXr+fiO4TR07LKJVKCeXr+2s0069KCO5/UCZb2ABbvtu1j8ebvS050JlUq6sejVniFjecWqOMpTsnfsJc6sgaRfuGfSV+DpAruNDiL3PkV92ooLay+qzCo62w5H9AkNQIDAQAB"
 }
