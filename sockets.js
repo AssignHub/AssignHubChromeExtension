@@ -2,7 +2,7 @@
 // the session param in the google oauth url should be set to the socket id
 // Then, authenticate the user with the specified socket id
 
-const socket = io.connect('http://localhost:3000', {
+window.socket = io.connect('http://localhost:3000', {
   path: '/sockets',
   withCredentials: true,
 })
