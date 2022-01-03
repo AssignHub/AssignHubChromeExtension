@@ -6,8 +6,23 @@ const profileName = document.getElementById('profile-name')
 const profileEmail = document.getElementById('profile-email')
 const authSection = document.getElementById('auth-section')
 const noAuthSection = document.getElementById('no-auth-section')
+const step1 = document.getElementById('step-1')
+
+const step1Data = Object.freeze({
+  usc: {
+    innerHTML: 'Navigate to <a id="step-1-link" href="https://my.usc.edu">my.usc.edu</a>',
+    href: 'https://my.usc.edu',
+  },
+  berkeley: 'Navigate to <a href="https://classes.berkeley.edu">classes.berkeley.edu</a>',
+})
 
 /* Function Definitions */
+function openTab(url) {
+  chrome.tabs.create({
+    url,
+  })
+}
+
 function getOAuthUrl() {
   /* Generates the oauth url and returns it */
   const clientId = encodeURIComponent('844813140506-upjq868ckcms47783pmelqtgqs2s1ft4.apps.googleusercontent.com')
@@ -25,12 +40,16 @@ function updateSignInState() {
     .then((data) => {
       // We are authenticated
       window.userData = data
-      const { pic, firstName, lastName, email } = data
+      const { pic, firstName, lastName, email, school } = data
 
       // Update HTML to show user data
       profilePic.src = pic
       profileName.innerHTML = `${firstName} ${lastName}`
       profileEmail.innerHTML = email
+      step1.innerHTML = step1Data[school].innerHTML
+      document.getElementById('step-1-link').addEventListener('click', () => {
+        openTab(step1Data[school].href)
+      })
 
       showAuthSection(true)
     })
