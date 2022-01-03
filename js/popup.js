@@ -1,4 +1,4 @@
-const parseBtn = document.getElementById('parse')
+const parseBtn = document.getElementById('parse-btn')
 
 parseBtn.addEventListener('click', async () => {
   let [ tab ] = await chrome.tabs.query({ active: true, currentWindow: true })
