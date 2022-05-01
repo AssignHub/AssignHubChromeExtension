@@ -1,6 +1,6 @@
 {
-  "name": "AssignHub",
-  "description": "The official chrome extension for AssignHub",
+  "name": "CourseHub",
+  "description": "Chrome extension that lets you see what courses your friends are taking",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
