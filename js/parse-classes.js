@@ -51,6 +51,7 @@ function parseClasses() {
     }
   }
 
+  console.log(classes)
   chrome.runtime.sendMessage({ type: 'parse-classes', classes })
 }
 
